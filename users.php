@@ -2,8 +2,6 @@
 session_start();
 require_once "function.php";
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +39,7 @@ require_once "function.php";
 
         <main id="js-page-content" role="main" class="page-content mt-3">
             <?php display_flash_message("success");?>
+<!--            <p>получилось с commitom</p>-->
             <div class="subheader">
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-users'></i> Список пользователей

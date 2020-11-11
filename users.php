@@ -39,7 +39,11 @@ require_once "function.php";
 
         <main id="js-page-content" role="main" class="page-content mt-3">
             <?php display_flash_message("success");?>
-<!--            <p>получилось с commitom</p>-->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Amet architecto autem corporis esse eum, eveniet fugit itaque,
+                nostrum quam quasi sed voluptas! Ab consequatur laudantium non recusandae.
+                Libero, molestias quis.</p>
+
             <div class="subheader">
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-users'></i> Список пользователей

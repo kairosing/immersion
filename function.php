@@ -56,6 +56,7 @@ function display_flash_message($name)
  *  Return value: boolean
  */
 
+
 function set_status($status){}
 /**
  * Parameters:
@@ -74,6 +75,8 @@ function upload_avatar($image){}
  *  Return value: null | string (path)
  */
 
+
+
 //add_social_links($telegram, $instagram, $vk);
 /**
  * Parameters:
@@ -87,7 +90,19 @@ function upload_avatar($image){}
 
 
 
+function is_not_logger_in(){
+    if (isset($_SESSION['email']) && !empty($_SESSION['email'])){
+        return false;
+    }
+    return true;
+}
 
+function check_admin(){
+    if ($_SESSION['role'] == "Администратор"){
+        return true;
+    }
+    return false;
+}
 
 
 

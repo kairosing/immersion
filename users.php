@@ -2,9 +2,9 @@
 session_start();
 require_once "function.php";
 
-if (is_not_logger_in()){
+/*if (is_not_logger_in()){
     redirect_to("page_login.php");
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,21 +31,17 @@ if (is_not_logger_in()){
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <?php if (is_not_logger_in()):?>
             <li class="nav-item">
                 <a class="nav-link" href="page_login.php">Войти</a>
             </li>
-            <?php else:?>
             <li class="nav-item">
                 <a class="nav-link" href="#">Выйти</a>
             </li>
-            <?php endif;?>
         </ul>
     </div>
 </nav>
 
 <main id="js-page-content" role="main" class="page-content mt-3">
-    <?php display_flash_message("success");?>
     <div class="subheader">
         <h1 class="subheader-title">
             <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -53,9 +49,7 @@ if (is_not_logger_in()){
     </div>
     <div class="row">
         <div class="col-xl-12">
-            <?php if (check_admin()):?>
             <a class="btn btn-success" href="create_user.php">Добавить</a>
-                <?php endif;?>
             <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
                 <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                 <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
@@ -84,7 +78,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -147,7 +141,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -210,7 +204,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -273,7 +267,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -336,7 +330,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -399,7 +393,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -462,7 +456,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">
@@ -525,7 +519,7 @@ if (is_not_logger_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.html">
+                                <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
                                 <a class="dropdown-item" href="security.html">

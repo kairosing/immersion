@@ -1,14 +1,13 @@
 <?php
-function get_user_by_email($email){
-    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
+function get_user_by_email($email)
+{
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
     $sql = "SELECT * FROM users WHERE email=:email";
 
     $statement = $pdo->prepare($sql);
-    $statement->execute(['email'  =>    $email]);
+    $statement->execute(['email' => $email]);
     $user = $statement->fetch(PDO::FETCH_ASSOC);
-
     return $user;
-
 }
 
 function set_flash_message($name, $message){
@@ -45,9 +44,10 @@ function display_flash_message($name)
     }
 }
 
-//edit_information($username, $job_title, $phone, $address);
+//edit_information($user_id, $username, $job_title, $phone, $address);
 /**
  * Parameters:
+ *      $user_id ini
  *      $username string
  *      $job_title string
  *      $phone string
@@ -55,6 +55,8 @@ function display_flash_message($name)
  *  Description редактировать профиль
  *  Return value: boolean
  */
+
+
 
 
 function set_status($status){}
@@ -103,10 +105,40 @@ function check_admin(){
     }
     return false;
 }
-// ролы ролы
 
 
+function is_author($logged_user_id, $edit_user_id){}
 
+/**
+ * Parameters:
+ *      $logger_user_id int
+ *      $edit_user_id int
+ *
+ *  Description проверить, автор текущий авторизованный рользователь
+ *  Return value: boolean
+ */
+
+/*function get_user_by_id($id){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+    $sql = "SELECT * FROM users WHERE id =:id";
+    $params = [
+        ':id' => $id
+    ];
+    $statement = $pdo->prepare($sql);
+    $statement->execute($params);
+    return $statement->fetch();
+    //    $user = $statement->fetch(PDO::FETCH_ASSOC);
+//    return $user;
+}*/
+
+/**
+ * Parameters:
+ *      $user_id int
+ *
+ *  Description получить пользователя по id
+ *  Return value: array
+ */
 
 
 

@@ -1,3 +1,21 @@
+<?php
+//session_start();
+require_once "function.php";
+
+//if (is_not_logger_in()){
+//    redirect_to("page_login.php");
+//}
+
+//if (!isset($_GET['id'])) redirect_to("users");
+/*if (isset($_POST["edit"])){
+    edit_information($id, $_POST["username"], $_POST["job_title"], $_POST["phone"], $_POST["address"]);
+    set_flash_message("green", "Профиль успешно добавлен");
+    redirect_to("users");
+}*/
+
+//$user = get_user_by_id($_POST["id"]);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +40,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <?php if (is_not_logger_in()):?>
                 <li class="nav-item">
                     <a class="nav-link" href="page_login.php">Войти</a>
                 </li>
+                <?php else:?>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Выйти</a>
                 </li>
+                <?php endif;?>
             </ul>
         </div>
     </nav>
@@ -38,7 +59,9 @@
             </h1>
 
         </div>
-        <form action="">
+<!--        --><?php //display_flash_message($_SESSION['status_message']);?>
+<!--        <form action="edit_user.php?id=--><?php //echo $user_id['id']; ?><!--" method="post">-->
+<!--        <form action="edit.php" method="post">-->
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -50,28 +73,28 @@
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Иван иванов">
+                                    <input type="text" id="simpleinput" class="form-control" name="username" value="<?php echo $user['username'];?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Marlin Веб-разработчик">
+                                    <input type="text" id="simpleinput" class="form-control" name="job_title" value="<?php echo $user['job_title'];?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="8 888 8888 88">
+                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $user['phone'];?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Восточные Королевства, Штормград">
+                                    <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $user['address'];?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                    <button class="btn btn-warning">Редактировать</button>
+                                    <button class="btn btn-warning" name="edit">Редактировать</button>
                                 </div>
                             </div>
                         </div>

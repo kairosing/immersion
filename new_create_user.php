@@ -1,7 +1,7 @@
 <?php
 session_start();
 //require_once "edit_user.php";
-//require_once "edit.php";
+require_once "users.php";
 
 $username = $_POST["username"];
 $job_title = $_POST["job_title"];

@@ -59,7 +59,11 @@ function display_flash_message($name)
 
 
 
-function set_status($status){}
+function set_status($status){
+
+
+
+}
 /**
  * Parameters:
  *      $status string

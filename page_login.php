@@ -39,13 +39,7 @@ require_once "function.php";
         </a>
     </div>
     <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-        <?php if(isset($_SESSION['success'])):?>
-            <div class="alert alert-success text-dark" role="alert">
-                <?php echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
-            </div>
-        <?php endif;?>
+        <?php display_flash_message("danger");?>
         <form action="register.php" method="post">
             <div class="form-group">
                 <label class="form-label" for="username">Email</label>

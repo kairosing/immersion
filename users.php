@@ -1,10 +1,11 @@
 <?php
-//session_start();
+session_start();
 require_once "function.php";
 
-/*if (is_not_logger_in()){
-    redirect_to("page_login.php");
-}*/
+if (is_not_logged_in()){
+    redirect_to('page_login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +43,13 @@ require_once "function.php";
 </nav>
 
 <main id="js-page-content" role="main" class="page-content mt-3">
+    <?php if (isset($_SESSION['success'])){
+    display_flash_message('success');unset($_SESSION['success']);
+    } elseif (isset($_SESSION['danger'])) {
+        display_flash_message('danger');
+        unset($_SESSION['danger']);
+    }?>
+
     <div class="subheader">
         <h1 class="subheader-title">
             <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -49,7 +57,10 @@ require_once "function.php";
     </div>
     <div class="row">
         <div class="col-xl-12">
+            <?php if (check_admin()):?>
             <a class="btn btn-success" href="create_user.php">Добавить</a>
+            <?endif;
+            ?>
             <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
                 <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                 <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">

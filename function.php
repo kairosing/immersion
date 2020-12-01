@@ -1,17 +1,5 @@
 <?php
 
-
-function login($email, $password){
-    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
-    $sql = "SELECT * FROM users WHERE email=:email AND password=:password ";
-    $statement = $pdo->prepare($sql);
-    $statement->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
-    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    return $user;
-}
-
-
 function get_user_by_email($email)
 {
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
@@ -23,8 +11,8 @@ function get_user_by_email($email)
 }
 
 function set_flash_message($status, $message){
-    $_SESSION[$status] = $status;
-    $_SESSION[$message] = $message;
+    $_SESSION['status'] = $status;
+    $_SESSION['message'] = $message;
 }
 
 function redirect_to($path){
@@ -36,8 +24,9 @@ function add_user($email, $password){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
     $sql = "INSERT INTO users(email,password) VALUES (:email, :password)";
     $statement = $pdo->prepare($sql);
-    $statement->execute(['email' => $email, 'password' => password_hash($password, PASSWORD_DEFAULT)]);
-
+    $statement->execute(['email' => $email, 'password' => $password]);
+    $selectUserById = get_user_by_email($email);
+    return $selectUserById;
     /**
      * Parameters:
      *      $email string
@@ -47,6 +36,43 @@ function add_user($email, $password){
      * Return value: int(user_id)
      */
 }
+
+function get_user($email){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
+    $sql = "SELECT * FROM users WHERE email=:email";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(["email" => $email]);
+    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $user;
+}
+
+function login ($email, $password){
+
+    $user = get_user($email);
+    if (empty($user)) {
+        //var_dump(1);die();
+        set_flash_message('danger', 'такого пользователя не существует');
+        return false;
+    }
+    elseif(!cheak_password($user, $password)) {
+       // var_dump(2);die();
+       set_flash_message('danger' ,'пароль не верный');
+       return false;
+    } else {
+       // var_dump(3);die();
+        $_SESSION['email'] = $user[0]['email'];
+        $_SESSION['admin'] = $user[0]['admin'];
+        return true;
+    }
+}
+
+ function cheak_password($user, $password){
+
+     if ($user[0]['password'] == $password){
+         return true;
+     }
+     return false;
+ }
 
 function display_flash_message($status)
 {
@@ -109,15 +135,22 @@ function upload_avatar($image){}
 
 
 
-function is_not_logger_in(){
+function is_not_logged_in(){
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])){
         return false;
     }
     return true;
 }
 
+//function is_not_logged_in($user){
+//    if (isset($user) && empty($user)){
+//        redirect_to("login.php");
+//        exit;
+
 function check_admin(){
-    if ($_SESSION['role'] == "Администратор"){
+//    var_dump($_SESSION['admin']);die();
+    if ($_SESSION['admin']) {
+
         return true;
     }
     return false;
@@ -135,9 +168,8 @@ function is_author($logged_user_id, $edit_user_id){}
  *  Return value: boolean
  */
 
-/*function get_user_by_id($id){
+function get_user_by_id($id){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
-    $pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
     $sql = "SELECT * FROM users WHERE id =:id";
     $params = [
         ':id' => $id
@@ -145,9 +177,8 @@ function is_author($logged_user_id, $edit_user_id){}
     $statement = $pdo->prepare($sql);
     $statement->execute($params);
     return $statement->fetch();
-    //    $user = $statement->fetch(PDO::FETCH_ASSOC);
-//    return $user;
-}*/
+
+}
 
 /**
  * Parameters:

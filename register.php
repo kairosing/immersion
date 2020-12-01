@@ -19,4 +19,4 @@ if (!empty($user)) {
 add_user($email, $password);
 
 set_flash_message("success", "Регитрация успешна");
-redirect_to("create_user.php");
+redirect_to("users.php");

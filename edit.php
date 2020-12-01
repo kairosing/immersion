@@ -2,7 +2,7 @@
 //session_start();
 require_once "function.php";
 
-//if (is_not_logger_in()){
+//if (is_not_logged_in()){
 //    redirect_to("page_login.php");
 //}
 

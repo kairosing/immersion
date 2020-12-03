@@ -1,14 +1,36 @@
 <?php
 
-function get_user_by_email($email)
-{
-    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+
+
+function get_user($email){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
     $sql = "SELECT * FROM users WHERE email=:email";
     $statement = $pdo->prepare($sql);
-    $statement->execute(['email' => $email]);
+    $statement->execute(["email" => $email]);
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
+
+function get_userAll(){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
+    $sql = "SELECT * FROM users JOIN information JOIN social_links";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    return $user;
+}
+
+
+function add_user($email, $password){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
+    $sql = "INSERT INTO users(email,password) VALUES (:email, :password)";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['email' => $email, 'password' => $password]);
+    $selectUserById = get_user($email);
+    return $selectUserById;
+
+}
+
 
 function set_flash_message($status, $message){
     $_SESSION['status'] = $status;
@@ -20,34 +42,7 @@ function redirect_to($path){
     exit;
 }
 
-function add_user($email, $password){
-    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
-    $sql = "INSERT INTO users(email,password) VALUES (:email, :password)";
-    $statement = $pdo->prepare($sql);
-    $statement->execute(['email' => $email, 'password' => $password]);
-    $selectUserById = get_user_by_email($email);
-    return $selectUserById;
-    /**
-     * Parameters:
-     *      $email string
-     *      $password string
-     *
-     * Description добавить пользователя
-     * Return value: int(user_id)
-     */
-}
-
-function get_user($email){
-    $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
-    $sql = "SELECT * FROM users WHERE email=:email";
-    $statement = $pdo->prepare($sql);
-    $statement->execute(["email" => $email]);
-    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $user;
-}
-
 function login ($email, $password){
-
     $user = get_user($email);
     if (empty($user)) {
         //var_dump(1);die();
@@ -60,15 +55,15 @@ function login ($email, $password){
        return false;
     } else {
        // var_dump(3);die();
-        $_SESSION['email'] = $user[0]['email'];
-        $_SESSION['admin'] = $user[0]['admin'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['admin'] = $user['admin'];
         return true;
     }
 }
 
  function cheak_password($user, $password){
 
-     if ($user[0]['password'] == $password){
+     if ($user['password'] == $password){
          return true;
      }
      return false;
@@ -83,7 +78,7 @@ function display_flash_message($status)
     }
 }
 
-//edit_information($user_id, $username, $job_title, $phone, $address);
+//function edit_information($user_id, $username, $job_title, $phone, $address){};
 /**
  * Parameters:
  *      $user_id ini
@@ -98,11 +93,7 @@ function display_flash_message($status)
 
 
 
-function set_status($status){
-
-
-
-}
+//function set_status($status){}
 /**
  * Parameters:
  *      $status string
@@ -111,7 +102,7 @@ function set_status($status){
  *  Return value: null
  */
 
-function upload_avatar($image){}
+//function upload_avatar($image){}
 /**
  * Parameters:
  *      $image array
@@ -142,13 +133,8 @@ function is_not_logged_in(){
     return true;
 }
 
-//function is_not_logged_in($user){
-//    if (isset($user) && empty($user)){
-//        redirect_to("login.php");
-//        exit;
 
 function check_admin(){
-//    var_dump($_SESSION['admin']);die();
     if ($_SESSION['admin']) {
 
         return true;

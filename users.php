@@ -57,6 +57,7 @@ if (is_not_logged_in()){
     </div>
     <div class="row">
         <div class="col-xl-12">
+            <!--  Кнопку добавление для админа-->
             <?php if (check_admin()):?>
             <a class="btn btn-success" href="create_user.php">Добавить</a>
             <?endif;
@@ -75,6 +76,13 @@ if (is_not_logged_in()){
         </div>
     </div>
     <div class="row" id="js-contacts">
+
+<?php
+    $users = get_userAll();
+    foreach ($users as $user):
+var_dump($users);die();
+?>
+
         <div class="col-xl-4">
             <div id="c_1" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="oliver kopyov">
                 <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
@@ -83,29 +91,36 @@ if (is_not_logged_in()){
                                     <span class="rounded-circle profile-image d-block " style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
                                 </span>
                         <div class="info-card-text flex-1">
-                            <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
-                                Oliver Kopyov
+                            <a href="<?php echo 'edit.php?id='.$users["id"];?>" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
+                                <?php echo $users["username"];?>
+
+                                <?php if (check_admin()):?>
                                 <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
+                            <?php endif;?>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="edit.php">
+
+                                <a class="dropdown-item" href="edit.php?id=<?php echo ['id'];?>">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php?id=<?php echo ['id'];?>">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php?id=<?php echo ['id'];?>">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php?id=<?php echo ['id'];?>">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
+                                <?endforeach;
+                                ?>
                                 <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
                                     <i class="fa fa-window-close"></i>
                                     Удалить
                                 </a>
+
                             </div>
                             <span class="text-truncate text-truncate-xl">IT Director, Gotbootstrap Inc.</span>
                         </div>
@@ -152,16 +167,17 @@ if (is_not_logged_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
+
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -169,6 +185,7 @@ if (is_not_logged_in()){
                                     <i class="fa fa-window-close"></i>
                                     Удалить
                                 </a>
+
                             </div>
                             <span class="text-truncate text-truncate-xl">Project Manager, Gotbootstrap Inc.</span>
                         </div>
@@ -215,16 +232,17 @@ if (is_not_logged_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
+
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -232,6 +250,7 @@ if (is_not_logged_in()){
                                     <i class="fa fa-window-close"></i>
                                     Удалить
                                 </a>
+
                             </div>
                             <span class="text-truncate text-truncate-xl">Human Resources, Gotbootstrap Inc.</span>
                         </div>
@@ -281,13 +300,13 @@ if (is_not_logged_in()){
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -341,16 +360,17 @@ if (is_not_logged_in()){
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                             </a>
                             <div class="dropdown-menu">
+
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -407,13 +427,13 @@ if (is_not_logged_in()){
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -470,13 +490,13 @@ if (is_not_logged_in()){
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
@@ -533,13 +553,13 @@ if (is_not_logged_in()){
                                 <a class="dropdown-item" href="edit.php">
                                     <i class="fa fa-edit"></i>
                                     Редактировать</a>
-                                <a class="dropdown-item" href="security.html">
+                                <a class="dropdown-item" href="security.php">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
-                                <a class="dropdown-item" href="media.html">
+                                <a class="dropdown-item" href="media.php">
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>

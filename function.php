@@ -13,10 +13,11 @@ function get_user($email){
 
 function get_userAll(){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
-    $sql = "SELECT * FROM users JOIN information JOIN social_links";
+    $sql = "SELECT * FROM users LEFT JOIN information ON users.id = information.user_id LEFT JOIN social_links  ON users.id = social_links.user_id";
+    //"SELECT * FROM users INNER JOIN information";
     $statement = $pdo->prepare($sql);
     $statement->execute();
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $user;
 }
 
@@ -26,8 +27,17 @@ function add_user($email, $password){
     $sql = "INSERT INTO users(email,password) VALUES (:email, :password)";
     $statement = $pdo->prepare($sql);
     $statement->execute(['email' => $email, 'password' => $password]);
-    $selectUserById = get_user($email);
-    return $selectUserById;
+    $user_id = get_user($email);
+    return $user_id['id'];
+
+    /**
+     * Parameters:
+     *      $email string
+     *      $password string
+     *
+     *  Description добавить пользователя
+     *  Return value: int (user_id)
+     */
 
 }
 
@@ -78,22 +88,7 @@ function display_flash_message($status)
     }
 }
 
-//function edit_information($user_id, $username, $job_title, $phone, $address){};
-/**
- * Parameters:
- *      $user_id ini
- *      $username string
- *      $job_title string
- *      $phone string
- *      $address string
- *  Description редактировать профиль
- *  Return value: boolean
- */
-
-
-
-
-//function set_status($status){}
+function set_status($status){}
 /**
  * Parameters:
  *      $status string
@@ -102,7 +97,7 @@ function display_flash_message($status)
  *  Return value: null
  */
 
-//function upload_avatar($image){}
+function upload_avatar($image){}
 /**
  * Parameters:
  *      $image array
@@ -110,21 +105,6 @@ function display_flash_message($status)
  *  Description загрузить аватар
  *  Return value: null | string (path)
  */
-
-
-
-//add_social_links($telegram, $instagram, $vk);
-/**
- * Parameters:
- *      $telegram string
- *      $instagram string
- *      $vk string
- *
- *  Description добавить ссылки на соц сети
- *  Return value: null
- */
-
-
 
 function is_not_logged_in(){
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])){

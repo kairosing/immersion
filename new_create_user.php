@@ -19,6 +19,17 @@ function edit_information($username, $job_title, $phone, $address)
     $statement = $pdo->prepare($sql);
     $statement->execute(['username' => $username, 'job_title' => $job_title, 'phone' => $phone, 'address' => $address]);
 
+
+    /**
+     * Parameters:
+     *      $user_id ini
+     *      $username string
+     *      $job_title string
+     *      $phone string
+     *      $address string
+     *  Description редактировать профиль
+     *  Return value: boolean
+     */
 }
 
 function add_social_links($telegram, $instagram, $vk){
@@ -26,6 +37,18 @@ function add_social_links($telegram, $instagram, $vk){
     $sql = "INSERT INTO social_links (telegram, instagram, vk) VALUES (:telegram, :instagram, :vk)";
     $statement = $pdo->prepare($sql);
     $statement->execute(['telegram' => $telegram, 'instagram' => $instagram, 'vk' => $vk]);
+
+    /**
+     * Parameters:
+     *      $telegram string
+     *      $instagram string
+     *      $vk string
+     *
+     *  Description добавить ссылки на соц сети
+     *  Return value: null
+     */
+
+
 }
 
 edit_information($username, $job_title, $phone, $address);

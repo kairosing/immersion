@@ -97,7 +97,7 @@ if (is_not_logged_in()){
                                 <?php if (check_admin()):?>
                                 <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
-                                <?php endif;?>
+
                             </a>
                             <div class="dropdown-menu">
 
@@ -120,6 +120,7 @@ if (is_not_logged_in()){
                                 </a>
 
                             </div>
+                            <?php endif;?>
                             <span class="text-truncate text-truncate-xl"><?php echo $user["job_title"];?></span>
                         </div>
                         <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_1 > .card-body + .card-body" aria-expanded="false">
@@ -137,6 +138,7 @@ if (is_not_logged_in()){
                             <i class="fas fa-mouse-pointer text-muted mr-2"></i><?php echo $user['email'];?></a>
                         <address class="fs-sm fw-400 mt-4 text-muted">
                             <i class="fas fa-map-pin mr-2"></i><?php echo $user['address'];?></address>
+
                         <div class="d-flex flex-row">
                             <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#4680C2">
                                 <i class="fab fa-vk"></i>
@@ -152,6 +154,7 @@ if (is_not_logged_in()){
                 </div>
             </div>
         </div>
+
     <?endforeach;?>
 
     </div>

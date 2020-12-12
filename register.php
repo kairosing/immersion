@@ -17,6 +17,7 @@ if (!empty($user)) {
 
 
 add_user($email, $password);
+//var_dump(add_user($email, $password));die();
 
 set_flash_message("success", "Регитрация успешна");
 redirect_to("page_login.php");

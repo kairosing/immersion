@@ -1,19 +1,13 @@
 <?php
-//session_start();
+
+session_start();
 require_once "function.php";
 
-//if (is_not_logged_in()){
-//    redirect_to("page_login.php");
-//}
+if (is_not_logged_in()) {
+    redirect_to('page_login.php');
+}
 
-//if (!isset($_GET['id'])) redirect_to("users");
-/*if (isset($_POST["edit"])){
-    edit_information($id, $_POST["username"], $_POST["job_title"], $_POST["phone"], $_POST["address"]);
-    set_flash_message("green", "Профиль успешно добавлен");
-    redirect_to("users");
-}*/
 
-//$user = get_user_by_id($_POST["id"]);
 
 ?>
 <!DOCTYPE html>
@@ -40,15 +34,15 @@ require_once "function.php";
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-<!--                --><?php //if (is_not_logger_in()):?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="page_login.php">Войти</a>
                 </li>
-<!--                --><?php //else:?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Выйти</a>
                 </li>
-<!--                --><?php //endif;?>
+
             </ul>
         </div>
     </nav>
@@ -59,10 +53,20 @@ require_once "function.php";
             </h1>
 
         </div>
-<!--        --><?php //display_flash_message($_SESSION['status_message']);?>
-<!--        <form action="edit_user.php?id=--><?php //echo $user_id['id']; ?><!--" method="post">-->
-<!--        <form action="edit.php" method="post">-->
+        <form action="users.php">
+        <?php if (isset($_SESSION['success'])){
+            display_flash_message('success');unset($_SESSION['success']);
+        } elseif (isset($_SESSION['danger'])) {
+            display_flash_message('danger');
+            unset($_SESSION['danger']);
+        }?>
             <div class="row">
+                <?php
+                $users = get_userOne();
+                foreach ($users as $user):
+                //                   var_dump($users);
+
+                ?>
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
@@ -70,6 +74,7 @@ require_once "function.php";
                                 <h2>Общая информация</h2>
                             </div>
                             <div class="panel-content">
+
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
@@ -94,12 +99,13 @@ require_once "function.php";
                                     <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $user['address'];?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                    <button class="btn btn-warning" name="edit">Редактировать</button>
+                                    <button class="btn btn-warning" name="edit">Редактировать<?php //get_userAlter();?></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?endforeach;?>
             </div>
         </form>
     </main>

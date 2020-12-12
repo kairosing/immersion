@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once "function.php";
+
+if (is_not_logged_in()){
+    redirect_to('page_login.php');
+}
+if (check_admin()): ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,14 +41,19 @@
     </div>
 </nav>
 <main id="js-page-content" role="main" class="page-content mt-3">
+
     <div class="subheader">
+
         <h1 class="subheader-title">
             <i class='subheader-icon fal fa-plus-circle'></i> Добавить пользователя
         </h1>
-
-
-
     </div>
+<!--    --><?php //if (isset($_SESSION['success'])){
+//        display_flash_message('success');unset($_SESSION['success']);
+//    } elseif (isset($_SESSION['danger'])) {
+//        display_flash_message('danger');
+//        unset($_SESSION['danger']);
+//    }?>
     <form action="new_create_user.php" method="post">
         <div class="row">
             <div class="col-xl-6">
@@ -78,6 +91,7 @@
 
                 </div>
             </div>
+
             <div class="col-xl-6">
                 <div id="panel-1" class="panel">
                     <div class="panel-container">
@@ -179,6 +193,7 @@
             </div>
         </div>
     </form>
+    <?endif;?>
 </main>
 
 <script src="js/vendors.bundle.js"></script>

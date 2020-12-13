@@ -16,10 +16,10 @@ $telegram = $_POST["telegram"];
 $instagram = $_POST["instagram"];
 $vk = $_POST["vk"];
 
-//if (get_user($email)){
-//    set_flash_message("danger", "Этот эл. адрес уже используется.");
-//    redirect_to("create_user.php");
-//}
+if (get_user($email)){
+    set_flash_message("danger", "Этот эл. адрес уже используется.");
+    redirect_to("create_user.php");
+}
 $user_id = add_user($email, $password);
 //var_dump($user_id);die();
 
@@ -67,5 +67,5 @@ add_social_links($telegram, $instagram, $vk, $user_id);
 //var_dump(edit_information($username, $job_title, $phone, $address, $user_id));
 //var_dump(add_social_links($telegram, $instagram, $vk, $user_id));die();
 
-//set_flash_message("success", "Пользователь успешно добавлен");
-//redirect_to("users.php");
+set_flash_message("success", "Пользователь успешно добавлен");
+redirect_to("users.php");

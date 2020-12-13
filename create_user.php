@@ -115,7 +115,7 @@ if (check_admin()): ?>
                             <!-- status -->
                             <div class="form-group">
                                 <label class="form-label" for="example-select">Выберите статус</label>
-                                <select class="form-control" id="example-select">
+                                <select class="form-control" id="example-select" name="status">
                                     <option>Онлайн</option>
                                     <option>Отошел</option>
                                     <option>Не беспокоить</option>
@@ -124,7 +124,7 @@ if (check_admin()): ?>
 
                             <div class="form-group">
                                 <label class="form-label" for="example-fileinput">Загрузить аватар</label>
-                                <input type="file" id="example-fileinput" class="form-control-file">
+                                <input type="file" id="example-fileinput" class="form-control-file" name="avatar">
                             </div>
                         </div>
                     </div>

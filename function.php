@@ -49,10 +49,10 @@ function add_user($email, $password){
     $sql = "INSERT INTO users(email,password) VALUES (:email, :password)";
     $statement = $pdo->prepare($sql);
     $statement->execute(['email' => $email, 'password' => $password]);
-    //return $pdo->lastInsertId();
-    $user_id = get_user($email);
-    //var_dump($user_id);die();
-    return $user_id;
+    return $pdo->lastInsertId();
+    //$user_id = get_user($email);
+   //var_dump($user_id);die();
+   // return $user_id;
 
 
 

@@ -68,6 +68,41 @@ function add_user($email, $password){
 }
 
 
+function edit_information($username, $job_title, $phone, $address, $user_id) {
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "UPDATE users SET username = :username, job_title = :job_title, phone = :phone, address = :address WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['username' => $username, 'job_title' => $job_title, 'phone' => $phone, 'address' => $address, 'id' => $user_id]);
+
+    /**
+     * Parameters:
+     *      $user_id ini
+     *      $username string
+     *      $job_title string
+     *      $phone string
+     *      $address string
+     *  Description редактировать профиль
+     *  Return value: boolean
+     */
+}
+
+function add_social_links($telegram, $instagram, $vk, $user_id){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "UPDATE users SET telegram = :telegram, instagram = :instagram, vk = :vk WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['telegram' => $telegram, 'instagram' => $instagram, 'vk' => $vk, 'id' => $user_id]);
+
+    /**
+     * Parameters:
+     *      $telegram string
+     *      $instagram string
+     *      $vk string
+     *
+     *  Description добавить ссылки на соц сети
+     *  Return value: null
+     */
+}
+
 function set_flash_message($status, $message){
     $_SESSION['status'] = $status;
     $_SESSION['message'] = $message;

@@ -5,8 +5,8 @@ require_once "function.php";
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-//$status = $_POST['status'];
-//$avatar = $_FILES['avatar'];
+$status = $_POST['status'];
+$avatar = $_FILES['avatar'];
 
 $username = $_POST["username"];
 $job_title = $_POST["job_title"];
@@ -22,8 +22,12 @@ if (get_user($email)){
 }
 $user_id = add_user($email, $password);
 //var_dump($user_id);die();
+//var_dump(upload_avatar());die();
+upload_avatar($avatar, $user_id);
 
+//var_dump($avatar);die();
 
+set_status($status, $user_id);
 edit_information($username, $job_title, $phone, $address, $user_id);
 add_social_links($telegram, $instagram, $vk, $user_id);
 

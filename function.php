@@ -1,7 +1,5 @@
 <?php
 
-
-
 function get_user($email){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
     $sql = "SELECT * FROM users WHERE email=:email";
@@ -149,7 +147,13 @@ function display_flash_message($status)
     }
 }
 
-function set_status($status, $user_id){}
+function set_status($status, $user_id){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "UPDATE users SET status = :status WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['status' => $status , 'id' => $user_id]);
+
+}
 /**
  * Parameters:
  *      $status string
@@ -158,7 +162,27 @@ function set_status($status, $user_id){}
  *  Return value: null
  */
 
-function upload_avatar($image, $user_id){}
+function upload_avatar($avatar, $user_id){
+
+    //$tmp_array = explode('.', $avatar['name']);
+   //$new_name = 'avatar'.uniqid().'.'.$tmp_array[1];
+   //move_uploaded_file($avatar['tmp_name'], 'img/avatars/'.$new_name);
+
+
+//    $name = $_FILES['image']['name'];
+//    $tmp_name = $_FILES['image']['tmp_name'];
+//    move_uploaded_file($tmp_name,"img/avatars/" . $name);
+
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['avatar' => $avatar , 'id' => $user_id]);
+
+
+}
+
+//var_dump(upload_avatar());die();
+
 /**
  * Parameters:
  *      $image array

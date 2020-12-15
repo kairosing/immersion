@@ -54,7 +54,7 @@ if (check_admin()): ?>
 //        display_flash_message('danger');
 //        unset($_SESSION['danger']);
 //    }?>
-    <form action="new_create_user.php" method="post">
+    <form action="new_create_user.php" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-xl-6">
                 <div id="panel-1" class="panel">

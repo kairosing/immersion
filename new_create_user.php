@@ -23,7 +23,8 @@ if (get_user($email)){
 $user_id = add_user($email, $password);
 //var_dump($user_id);die();
 //var_dump(upload_avatar());die();
-upload_avatar($avatar, $user_id);
+upload_avatar($_FILES['avatar'], $user_id);
+
 
 //var_dump($avatar);die();
 

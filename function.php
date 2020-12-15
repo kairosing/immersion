@@ -163,22 +163,16 @@ function set_status($status, $user_id){
  */
 
 function upload_avatar($avatar, $user_id){
-
-    //$tmp_array = explode('.', $avatar['name']);
-   //$new_name = 'avatar'.uniqid().'.'.$tmp_array[1];
-   //move_uploaded_file($avatar['tmp_name'], 'img/avatars/'.$new_name);
-
-
-//    $name = $_FILES['image']['name'];
-//    $tmp_name = $_FILES['image']['tmp_name'];
-//    move_uploaded_file($tmp_name,"img/avatars/" . $name);
+   $name = $avatar['name'];
+    $tmp_name = $avatar['tmp_name'];
+   move_uploaded_file($tmp_name,"img/demo/avatars/" . $name);
+    //$path = $_FILES['image']['name'];
+   // $ext = pathinfo($path, PATHINFO_EXTENSION);
 
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
     $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
     $statement = $pdo->prepare($sql);
     $statement->execute(['avatar' => $avatar , 'id' => $user_id]);
-
-
 }
 
 //var_dump(upload_avatar());die();

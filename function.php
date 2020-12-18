@@ -23,7 +23,7 @@ function get_userAll(){
 
 function get_userOne(){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort","root","");
-    $sql = "SELECT * FROM users LIMIT 1";
+    $sql = "SELECT * FROM users";
    // INNER JOIN information ON users.id = information.user_id INNER JOIN social_links  ON users.id = social_links.user_id
     //"SELECT * FROM users INNER JOIN information";
     $statement = $pdo->prepare($sql);
@@ -48,12 +48,6 @@ function add_user($email, $password){
     $statement = $pdo->prepare($sql);
     $statement->execute(['email' => $email, 'password' => $password]);
     return $pdo->lastInsertId();
-    //$user_id = get_user($email);
-   //var_dump($user_id);die();
-   // return $user_id;
-
-
-
     /**
      * Parameters:
      *      $email string
@@ -114,16 +108,13 @@ function redirect_to($path){
 function login ($email, $password){
     $user = get_user($email);
     if (empty($user)) {
-        //var_dump(1);die();
         set_flash_message('danger', 'такого пользователя не существует');
         return false;
     }
     elseif(!cheak_password($user, $password)) {
-       // var_dump(2);die();
        set_flash_message('danger' ,'пароль не верный');
        return false;
     } else {
-       // var_dump(3);die();
         $_SESSION['email'] = $user['email'];
         $_SESSION['admin'] = $user['admin'];
         return true;
@@ -165,17 +156,12 @@ function set_status($status, $user_id){
 function upload_avatar($avatar, $user_id){
    $name = $avatar['name'];
     $tmp_name = $avatar['tmp_name'];
-   move_uploaded_file($tmp_name,"img/demo/avatars/" . $name);
-    //$path = $_FILES['image']['name'];
-   // $ext = pathinfo($path, PATHINFO_EXTENSION);
-
+   move_uploaded_file($tmp_name,"img/avatars/" . $name);
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
     $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
     $statement = $pdo->prepare($sql);
     $statement->execute(['avatar' => $avatar , 'id' => $user_id]);
 }
-
-//var_dump(upload_avatar());die();
 
 /**
  * Parameters:

@@ -48,12 +48,12 @@ if (check_admin()): ?>
             <i class='subheader-icon fal fa-plus-circle'></i> Добавить пользователя
         </h1>
     </div>
-<!--    --><?php //if (isset($_SESSION['success'])){
-//        display_flash_message('success');unset($_SESSION['success']);
-//    } elseif (isset($_SESSION['danger'])) {
-//        display_flash_message('danger');
-//        unset($_SESSION['danger']);
-//    }?>
+    <?php if (isset($_SESSION['success'])){
+        display_flash_message('success');unset($_SESSION['success']);
+    } elseif (isset($_SESSION['danger'])) {
+        display_flash_message('danger');
+        unset($_SESSION['danger']);
+    }?>
     <form action="new_create_user.php" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-xl-6">

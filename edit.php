@@ -62,11 +62,7 @@ if (is_not_logged_in()) {
         }?>
             <div class="row">
                 <?php
-                $users = get_userOne();
-                foreach ($users as $user):
-                //                   var_dump($users);
-
-                ?>
+                $users = get_user_by_id('5'); ?>
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
@@ -78,25 +74,25 @@ if (is_not_logged_in()) {
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="username" value="<?php echo $user['username'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="username" value="<?php echo $users['username'];?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="job_title" value="<?php echo $user['job_title'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="job_title" value="<?php echo $users['job_title'];?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $user['phone'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $users['phone'];?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $user['address'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $users['address'];?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                     <button class="btn btn-warning" name="edit">Редактировать<?php //get_userAlter();?></button>
@@ -105,7 +101,6 @@ if (is_not_logged_in()) {
                         </div>
                     </div>
                 </div>
-                <?endforeach;?>
             </div>
         </form>
     </main>

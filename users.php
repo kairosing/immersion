@@ -80,7 +80,6 @@ if (is_not_logged_in()){
 <?php
     $users = get_userAll();
     foreach ($users as $user):
-   // var_dump($users);die();
 
 ?>
         <div class="col-xl-4">

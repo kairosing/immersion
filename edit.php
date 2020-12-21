@@ -7,7 +7,7 @@ if (is_not_logged_in()) {
     redirect_to('page_login.php');
 }
 
-
+$user = get_user_by_id('4');
 
 ?>
 <!DOCTYPE html>
@@ -53,16 +53,8 @@ if (is_not_logged_in()) {
             </h1>
 
         </div>
-        <form action="users.php">
-        <?php if (isset($_SESSION['success'])){
-            display_flash_message('success');unset($_SESSION['success']);
-        } elseif (isset($_SESSION['danger'])) {
-            display_flash_message('danger');
-            unset($_SESSION['danger']);
-        }?>
+        <form action="edit_user.php?id=<? echo $user['id']?>" method="post">
             <div class="row">
-                <?php
-                $users = get_user_by_id('5'); ?>
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
@@ -74,28 +66,28 @@ if (is_not_logged_in()) {
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="username" value="<?php echo $users['username'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="username" value="<?php echo $user['username'];?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="job_title" value="<?php echo $users['job_title'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="job_title" value="<?php echo $user['job_title'];?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $users['phone'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $user['phone'];?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $users['address'];?>">
+                                    <input type="text" id="simpleinput" class="form-control" name="address" value="<?php echo $user['address'];?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                    <button class="btn btn-warning" name="edit">Редактировать<?php //get_userAlter();?></button>
+                                    <button class="btn btn-warning" name="edit">Редактировать</button>
                                 </div>
                             </div>
                         </div>

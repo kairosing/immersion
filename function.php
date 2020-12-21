@@ -206,7 +206,6 @@ function get_user_by_id($user_id){
     $statement = $pdo->prepare($sql);
     $statement->execute(['id' => $user_id]);
     $user = $statement->fetch(PDO::FETCH_ASSOC);
-
     return $user;
 }
 

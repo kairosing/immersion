@@ -7,7 +7,8 @@ if (is_not_logged_in()) {
     redirect_to('page_login.php');
 }
 
-$user = get_user_by_id('4');
+$user_id = $_GET["id"];
+$user = get_user_by_id($user_id);
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +54,7 @@ $user = get_user_by_id('4');
             </h1>
 
         </div>
-        <form action="edit_user.php?id=<? echo $user['id']?>" method="post">
+        <form action="edit_user.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -63,6 +64,9 @@ $user = get_user_by_id('4');
                             </div>
                             <div class="panel-content">
 
+                                <div class="form-group">
+                                    <input type="hidden" id="simpleinput" class="form-control" name="id" value="<?php echo $user['id'];?>">
+                                </div>
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>

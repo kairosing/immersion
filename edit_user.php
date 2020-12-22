@@ -3,7 +3,7 @@
 session_start();
 require_once "function.php";
 
-$user_id = $_GET["id"];
+$user_id = $_POST["id"];
 $username = $_POST["username"];
 $job_title = $_POST["job_title"];
 $phone = $_POST["phone"];

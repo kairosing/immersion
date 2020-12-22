@@ -188,7 +188,9 @@ function check_admin(){
 }
 
 
-function is_author($logged_user_id, $edit_user_id){}
+function is_author($logged_user_id, $edit_user_id){
+    return $logged_user_id == $edit_user_id;
+}
 
 /**
  * Parameters:
@@ -209,13 +211,6 @@ function get_user_by_id($user_id){
     return $user;
 }
 
-/**
- * Parameters:
- *      $user_id int
- *
- *  Description получить пользователя по id
- *  Return value: array
- */
 
 
 

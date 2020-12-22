@@ -7,6 +7,12 @@ if (is_not_logged_in()) {
     redirect_to('page_login.php');
 }
 
+if (!is_author($_GET['id'], $_GET['id'])){
+    set_flash_message('danger', 'Вы можете редактировать только свой профиль');
+    redirect_to('users.php');
+}
+
+
 $user_id = $_GET["id"];
 $user = get_user_by_id($user_id);
 

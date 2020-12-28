@@ -212,5 +212,20 @@ function get_user_by_id($user_id){
 }
 
 
+function edit_credentials($user_id, $email){
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "UPDATE users SET  email = :email  WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['email' => $email, 'id' => $user_id]);
+}
 
+/**
+ * Parameters:
+ *      $user_id int
+ *      $email string
+ *      $email password
+ *
+ *  Description: редактировать входные данные email или password
+ *  Return value: null | boolean
+ */
 

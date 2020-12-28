@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once "function.php";
+
+if (is_not_logged_in()){
+    redirect_to('page_login.php');
+}
+
+if (!is_author($_GET['id'], $_GET['id'])){
+    set_flash_message('danger', 'Вы можете редактировать только свой профиль');
+    redirect_to('users.php');
+}
+
+
+$user_id = $_GET["id"];
+$user = get_user_by_id($user_id);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +57,15 @@
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-lock'></i> Безопасность
             </h1>
+            <?php if (isset($_SESSION['success'])){
+                display_flash_message('success');unset($_SESSION['success']);
+            } elseif (isset($_SESSION['danger'])) {
+                display_flash_message('danger');
+                unset($_SESSION['danger']);
+            }?>
 
         </div>
-        <form action="">
+        <form action="edit_security.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -47,16 +74,19 @@
                                 <h2>Обновление эл. адреса и пароля</h2>
                             </div>
                             <div class="panel-content">
+                                <div class="form-group">
+                                    <input type="hidden" id="simpleinput" class="form-control" value="<?php echo $user['id'];?>" name="id">
+                                </div>
                                 <!-- email -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="john@example.com">
+                                    <input type="text" id="simpleinput" class="form-control" value="<?php echo $user['email'];?>" name="email">
                                 </div>
 
                                 <!-- password -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Пароль</label>
-                                    <input type="password" id="simpleinput" class="form-control">
+                                    <input type="password" id="simpleinput" class="form-control" name="password">
                                 </div>
 
                                 <!-- password confirmation-->

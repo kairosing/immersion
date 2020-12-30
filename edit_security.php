@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 
  if(empty(get_user($email))){
-     edit_credentials($user_id, $email);
+     edit_credentials($user_id, $email, $password);
      set_flash_message("success", "профиль успешно изменнен");
      redirect_to("users.php");
 }  else {

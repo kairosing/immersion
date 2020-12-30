@@ -212,11 +212,11 @@ function get_user_by_id($user_id){
 }
 
 
-function edit_credentials($user_id, $email){
+function edit_credentials($user_id, $email, $password){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
-    $sql = "UPDATE users SET  email = :email  WHERE id = :id";
+    $sql = "UPDATE users SET  email = :email, password = :password  WHERE id = :id";
     $statement = $pdo->prepare($sql);
-    $statement->execute(['email' => $email, 'id' => $user_id]);
+    $statement->execute(['email' => $email, 'password' => $password, 'id' => $user_id]);
 }
 
 /**

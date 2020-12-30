@@ -15,6 +15,5 @@ $password = $_POST['password'];
      redirect_to("users.php");
 }  else {
      set_flash_message("danger", "профиль занят");
-     redirect_to("security.php");
+     redirect_to("security.php?id=".$user_id);
  }
-

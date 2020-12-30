@@ -39,7 +39,7 @@ require_once "function.php";
         </a>
     </div>
     <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-        <?php display_flash_message("success");?>
+        <?php display_flash_message();?>
         <form action="login.php" method="post">
             <div class="form-group">
                 <label class="form-label" for="username">Email</label>

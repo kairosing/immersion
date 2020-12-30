@@ -129,10 +129,10 @@ function login ($email, $password){
      return false;
  }
 
-function display_flash_message($status)
+function display_flash_message()
 {
     if (isset($_SESSION['status'])) {
-        echo "<div class=\"alert alert-{$status} text-dark\" role=\"alert\">{$_SESSION['message']}</div>";
+        echo "<div class=\"alert alert-{$_SESSION['status']} text-dark\" role=\"alert\">{$_SESSION['message']}</div>";
         unset($_SESSION['status']);
         unset($_SESSION['message']);
     }

@@ -6,9 +6,11 @@ if (is_not_logged_in()){
     redirect_to('page_login.php');
 }
 
-if (!is_author($_GET['id'], $_GET['id'])){
-    set_flash_message('danger', 'Вы можете редактировать только свой профиль');
-    redirect_to('users.php');
+if (!check_admin()) {
+    if (!is_author($_GET['id'], $_GET['id'])) {
+        set_flash_message('danger', 'Вы можете редактировать только свой профиль');
+        redirect_to('users.php');
+    }
 }
 
 
@@ -43,12 +45,15 @@ $user = get_user_by_id($user_id);
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <?php if (is_not_logged_in()):?>
                 <li class="nav-item">
                     <a class="nav-link" href="page_login.php">Войти</a>
                 </li>
+                <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Выйти</a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
@@ -56,13 +61,10 @@ $user = get_user_by_id($user_id);
         <div class="subheader">
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-lock'></i> Безопасность
+                <?php
+                display_flash_message(); ?>
             </h1>
-            <?php if (isset($_SESSION['success'])){
-                display_flash_message('success');unset($_SESSION['success']);
-            } elseif (isset($_SESSION['danger'])) {
-                display_flash_message('danger');
-                unset($_SESSION['danger']);
-            }?>
+
 
         </div>
         <form action="edit_security.php" method="post">

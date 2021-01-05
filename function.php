@@ -160,9 +160,13 @@ function upload_avatar($avatar, $user_id){
     $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
     $sql = "UPDATE users SET avatar = :avatar WHERE id = :id";
     $statement = $pdo->prepare($sql);
-    $statement->execute(['avatar' => $avatar , 'id' => $user_id]);
+    $statement->execute(['avatar' => $name, 'id' => $user_id]);
 }
 
+
+function avatar($name){
+    echo 'img/avatars/' . $name;
+}
 /**
  * Parameters:
  *      $image array

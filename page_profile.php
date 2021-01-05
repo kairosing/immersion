@@ -54,7 +54,7 @@ $user = get_user_by_id($user_id);
             </div>
             <?
             if (isset($_SESSION['success'])){
-                display_flash_message("success");
+                display_flash_message();
             }
             ?>
             <div class="row">
@@ -64,19 +64,20 @@ $user = get_user_by_id($user_id);
                         <div class="row no-gutters row-grid">
                             <div class="col-12">
                                 <div class="d-flex flex-column align-items-center justify-content-center p-4">
-                                    <img src="<?php $user['avatar'];?>" class="rounded-circle shadow-2 img-thumbnail" alt="">
+                                    <img src="<?php avatar($user['avatar']); ?>" class="rounded-circle shadow-2 img-thumbnail" alt="">
+
                                     <h5 class="mb-0 fw-700 text-center mt-3">
                                         <?php echo $user['username'];?>
                                         <small class="text-muted mb-0"><?php echo $user['address'];?></small>
                                     </h5>
                                     <div class="mt-4 text-center demo">
-                                        <a href="https://instagram.com/<?php $user['instagram']?>" class="fs-xl" style="color:#C13584">
+                                        <a href="https://instagram.com/<?php echo $user['instagram']?>" class="fs-xl" style="color:#C13584">
                                             <i class="fab fa-instagram"></i>
                                         </a>
-                                        <a href="https://vk.me/<?php $user['vk']?>" class="fs-xl" style="color:#4680C2">
+                                        <a href="https://vk.me/<?php echo $user['vk']?>" class="fs-xl" style="color:#4680C2">
                                             <i class="fab fa-vk"></i>
                                         </a>
-                                        <a href="https://t.me/<?php $user['telegram']?>" class="fs-xl" style="color:#0088cc">
+                                        <a href="https://t.me/<?php echo $user['telegram']?>" class="fs-xl" style="color:#0088cc">
                                             <i class="fab fa-telegram"></i>
                                         </a>
                                     </div>
@@ -87,7 +88,7 @@ $user = get_user_by_id($user_id);
                                     <a href="tel:+13174562564" class="mt-1 d-block fs-sm fw-400 text-dark">
                                         <i class="fas fa-mobile-alt text-muted mr-2"></i><?php echo $user['phone'];?></a>
                                     <a href="mailto:oliver.kopyov@marlin.ru" class="mt-1 d-block fs-sm fw-400 text-dark">
-                                        <i class="fas fa-mouse-pointer text-muted mr-2"></i><?php $user['email'];?></a>
+                                        <i class="fas fa-mouse-pointer text-muted mr-2"></i><?php echo $user['email'];?></a>
                                     <address class="fs-sm fw-400 mt-4 text-muted">
                                         <i class="fas fa-map-pin mr-2"></i> <?php echo $user['address'];?>
                                     </address>

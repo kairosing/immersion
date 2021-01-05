@@ -88,7 +88,7 @@ if (is_not_logged_in()){
                     <div class="d-flex flex-row align-items-center">
                                 <span class="status status-success mr-3">
                                      <a href="page_profile.php?id=<?php echo $user['id'];?>">
-                                    <span class="rounded-circle profile-image d-block " style="background-image:url('<?php avatar($user['avatar']); ?>'); background-size: cover;"></span>
+                                    <span class="rounded-circle profile-image d-block " style="background-image:url('<?php has_image($user['avatar']); ?>'); background-size: cover;"></span>
                                 </span>
                         <div class="info-card-text flex-1">
                             <a href="<?php echo $user["id"];?>" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">

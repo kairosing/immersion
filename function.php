@@ -164,7 +164,7 @@ function upload_avatar($avatar, $user_id){
 }
 
 
-function avatar($name){
+function has_image($name){
     echo 'img/avatars/' . $name;
 }
 /**

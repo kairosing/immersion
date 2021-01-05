@@ -44,9 +44,9 @@ if (is_not_logged_in()){
 
 <main id="js-page-content" role="main" class="page-content mt-3">
     <?php if (isset($_SESSION['success'])){
-    display_flash_message('success');unset($_SESSION['success']);
+    display_flash_message();unset($_SESSION['success']);
     } elseif (isset($_SESSION['danger'])) {
-        display_flash_message('danger');
+        display_flash_message();
         unset($_SESSION['danger']);
     }?>
 

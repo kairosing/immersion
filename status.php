@@ -1,3 +1,23 @@
+<?php
+session_start();
+require_once "function.php";
+
+if (is_not_logged_in()){
+    redirect_to('page_login.php');
+}
+
+if (!check_admin()) {
+    if (!is_author($_GET['id'], $_GET['id'])) {
+        set_flash_message('danger', 'Вы можете редактировать только свой профиль');
+        redirect_to('users.php');
+    }
+}
+
+$user_id = $_GET["id"];
+$user = get_user_by_id($user_id);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +58,7 @@
             </h1>
 
         </div>
-        <form action="">
+        <form action="edit_status.php" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -47,15 +67,28 @@
                                 <h2>Установка текущего статуса</h2>
                             </div>
                             <div class="panel-content">
+                                <input type="hidden" id="simpleinput" class="form-control" value="<?php echo $user['id'];?>" name="id">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <!-- status -->
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
-                                            <select class="form-control" id="example-select">
-                                                <option>Онлайн</option>
-                                                <option>Отошел</option>
-                                                <option>Не беспокоить</option>
+                                            <select class="form-control" id="example-select" name="status">
+
+                                                <?php
+//
+                                               $status['online'] = 'Онлайн';
+                                               $status['away'] = 'Отошел';
+                                               $status['busy'] = 'Не беспокоить';
+
+
+                                               foreach ($status as $key => $value){
+                                                   if ($user['status'] == $key)
+                                                       echo '<option value="'.$key.'" selected="selected">'.$value.'</option>';
+                                                   else
+                                                       echo '<option value="'.$key.'">'.$value.'</option>';
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>

@@ -49,9 +49,9 @@ if (check_admin()): ?>
         </h1>
     </div>
     <?php if (isset($_SESSION['success'])){
-        display_flash_message('success');unset($_SESSION['success']);
+        display_flash_message();unset($_SESSION['success']);
     } elseif (isset($_SESSION['danger'])) {
-        display_flash_message('danger');
+        display_flash_message();
         unset($_SESSION['danger']);
     }?>
     <form action="new_create_user.php" method="post" enctype="multipart/form-data">

@@ -87,7 +87,7 @@ $user = get_user_by_id($user_id);
                                     <a href="tel:+13174562564" class="mt-1 d-block fs-sm fw-400 text-dark">
                                         <i class="fas fa-mobile-alt text-muted mr-2"></i><?php echo $user['phone'];?></a>
                                     <a href="mailto:oliver.kopyov@marlin.ru" class="mt-1 d-block fs-sm fw-400 text-dark">
-                                        <i class="fas fa-mouse-pointer text-muted mr-2"></i><?php $user['email']?></a>
+                                        <i class="fas fa-mouse-pointer text-muted mr-2"></i><?php $user['email'];?></a>
                                     <address class="fs-sm fw-400 mt-4 text-muted">
                                         <i class="fas fa-map-pin mr-2"></i> <?php echo $user['address'];?>
                                     </address>

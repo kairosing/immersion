@@ -162,11 +162,6 @@ function upload_avatar($avatar, $user_id){
     $statement = $pdo->prepare($sql);
     $statement->execute(['avatar' => $name, 'id' => $user_id]);
 }
-
-
-function has_image($name){
-    echo 'img/avatars/' . $name;
-}
 /**
  * Parameters:
  *      $image array
@@ -174,6 +169,29 @@ function has_image($name){
  *  Description загрузить аватар
  *  Return value: null | string (path)
  */
+
+
+//function has_image($name){
+//    echo 'img/avatars/' . $name;
+//}
+
+function has_image($name)
+{
+    if (!empty($name)) {
+        echo 'img/avatars/' . $name;
+    } else {
+        echo 'img/demo/avatars/avatar-m.png';
+    }
+}
+/**
+ * Parameters:
+ *      $user_id int
+ *      $image string
+ *
+ *  Description проверяет имеется ли аватар у пользователя
+ *  Return value: null | boolean
+ */
+
 
 function is_not_logged_in(){
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])){

@@ -58,6 +58,7 @@ $user = get_user_by_id($user_id);
             </h1>
 
         </div>
+
         <form action="edit_media.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
@@ -69,7 +70,7 @@ $user = get_user_by_id($user_id);
                             </div>
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <img src="<?php echo $user['avatar']?>" alt="User avatar" class="img-responsive" width="200">
+                                    <img src="<?php has_image($user['avatar']);?>" alt="User avatar" class="img-responsive" width="200">
                                 </div>
 
                                 <div class="form-group">

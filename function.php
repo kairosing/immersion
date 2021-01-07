@@ -117,6 +117,7 @@ function login ($email, $password){
     } else {
         $_SESSION['email'] = $user['email'];
         $_SESSION['admin'] = $user['admin'];
+        $_SESSION['id'] = $user['id'];
         return true;
     }
 }
@@ -145,13 +146,7 @@ function set_status($status, $user_id){
     $statement->execute(['status' => $status , 'id' => $user_id]);
 
 }
-/**
- * Parameters:
- *      $status string
- *
- *  Description установить статус
- *  Return value: null
- */
+
 
 function upload_avatar($avatar, $user_id){
    $name = $avatar['name'];
@@ -162,18 +157,6 @@ function upload_avatar($avatar, $user_id){
     $statement = $pdo->prepare($sql);
     $statement->execute(['avatar' => $name, 'id' => $user_id]);
 }
-/**
- * Parameters:
- *      $image array
- *
- *  Description загрузить аватар
- *  Return value: null | string (path)
- */
-
-
-//function has_image($name){
-//    echo 'img/avatars/' . $name;
-//}
 
 function has_image($name)
 {
@@ -183,15 +166,6 @@ function has_image($name)
         echo 'img/demo/avatars/avatar-m.png';
     }
 }
-/**
- * Parameters:
- *      $user_id int
- *      $image string
- *
- *  Description проверяет имеется ли аватар у пользователя
- *  Return value: null | boolean
- */
-
 
 function is_not_logged_in(){
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])){
@@ -214,14 +188,6 @@ function is_author($logged_user_id, $edit_user_id){
     return $logged_user_id == $edit_user_id;
 }
 
-/**
- * Parameters:
- *      $logger_user_id int
- *      $edit_user_id int
- *
- *  Description проверить, автор текущий авторизованный рользователь
- *  Return value: boolean
- */
 
 function get_user_by_id($user_id){
 
@@ -241,13 +207,9 @@ function edit_credentials($user_id, $email, $password){
     $statement->execute(['email' => $email, 'password' => $password, 'id' => $user_id]);
 }
 
-/**
- * Parameters:
- *      $user_id int
- *      $email string
- *      $email password
- *
- *  Description: редактировать входные данные email или password
- *  Return value: null | boolean
- */
-
+function delete($user_id) {
+    $pdo = new PDO("mysql:host=localhost;dbname=get_fort", "root", "");
+    $sql = "DELETE FROM users WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $statement->execute(['id' => $user_id]);
+}

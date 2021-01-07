@@ -94,7 +94,7 @@ if (is_not_logged_in()){
                             <a href="<?php echo $user["id"];?>" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                 <?php echo $user["username"];?>
 
-                                <?php if (check_admin()):?>
+                                <?php if (check_admin() || $_SESSION['email'] == $user['email']):?>
                                 <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
 
@@ -114,7 +114,7 @@ if (is_not_logged_in()){
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
-                                <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                <a href="delete_users.php?id=<?php echo $user['id']?>" class="dropdown-item" onclick="return confirm('are you sure?');">
                                     <i class="fa fa-window-close"></i>
                                     Удалить
                                 </a>
